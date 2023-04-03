@@ -111,6 +111,11 @@
   }
 }
 
+.active-sublevel {
+  color: #f3f3f3 !important;
+  // opacity: 1 !important;
+}
+
 .menu-collapse-icon {
   font-size: 25px;
   width: 2rem;
@@ -120,16 +125,51 @@
   color: #f3f3f3;
 }
 
+.sublevel-nav {
+  list-style: none;
+  margin-left: 10px;
+
+  .sublevel-nav-item {
+    .sublevel-nav-link {
+      display: flex;
+      align-items: center;
+      height: 3rem;
+      color: #898989;
+      text-decoration: none;
+      border-radius: 0.625rem;
+      transition: all 0.3s ease;
+
+      .sublevel-link-icon {
+        font-size: 4px;
+        width: 2rem;
+        min-width: 2rem;
+        margin: 0 0.5rem;
+        text-align: center;
+      }
+
+      .sublevel-link-text {
+        margin-left: 0.8rem;
+      }
+    }
+
+    .sublevel-nav-link:hover {
+      color: #f3f3f3;
+    }
+  }
+}
+
+//scrollbar and visibility on hover and focus
+
 .scrollwrap {
   overflow-y: auto;
   visibility: hidden;
   height: calc(100% - 3.65rem);
+}
 
-  .sidenav-nav,
-  .scrollwrap:hover,
-  .scrollwrap:focus {
-    visibility: visible;
-  }
+.sidenav-nav,
+.scrollwrap:hover,
+.scrollwrap:focus {
+  visibility: visible;
 }
 
 .scrollwrap_delayed {
@@ -140,6 +180,7 @@
   transition: visibility 0.2s 0.2s;
 }
 
+// works on chrome, edge and safari
 .scrollwrap::-webkit-scrollbar {
   width: 10px;
 }
@@ -148,7 +189,7 @@
   background: transparent;
 }
 
-scrollwrap::-webkit-scrollbar-thumb {
+.scrollwrap::-webkit-scrollbar-thumb {
   background-color: #556268;
   border-radius: 20px;
 }

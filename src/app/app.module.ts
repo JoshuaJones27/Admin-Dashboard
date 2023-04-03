@@ -9,6 +9,7 @@ import { BodyComponent } from './body/body.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 
 import { OverlayModule } from '@angular/cdk/overlay';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     DashboardComponent,
     BodyComponent,
     SidenavComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

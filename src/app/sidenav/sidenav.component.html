@@ -1,9 +1,14 @@
-<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : ''" ]>
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : ''">
   <div class="logo-container">
-    <button class="logo" (click)="toggleCollapse()">ASD</button>
-    <div class="logo-text" @fadeInOut *ngIf="collapsed">ASD ASD</div>
-    <button class="btn-close" *ngIf="collapsed" (click)="closeSidenav()">
-      <i class="fal fa-times close-item"></i>
+    <button class="logo" (click)="toggleCollapse()">A</button>
+    <div class="logo-text" @fadeInOut *ngIf="collapsed">Angular</div>
+    <button
+      class="btn-close"
+      @rotate
+      *ngIf="collapsed"
+      (click)="closeSidenav()"
+    >
+      <i class="fal fa-times close-icon"></i>
     </button>
   </div>
   <div class="scrollwrap scrollwrap_delayed">
@@ -16,9 +21,9 @@
           [ngClass]="getActiveClass(data)"
         >
           <i class="sidenav-link-icon" [class]="data.icon"></i>
-          <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">{{
-            data.label
-          }}</span>
+          <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">
+            {{ data.label }}
+          </span>
           <i
             *ngIf="data.items && collapsed"
             class="menu-collapse-icon"
@@ -37,13 +42,11 @@
           (click)="shrinkItems(data)"
         >
           <i class="sidenav-link-icon" [class]="data.icon"></i>
-          <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">{{
-            data.label
-          }}</span>
+          <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">
+            {{ data.label }}
+          </span>
         </a>
-        <!-- <div *ngIf="collapsed && data.items && data.items.length > 0">
-
-        </div> -->
+        <div *ngIf="collapsed && data.items && data.items.length > 0"></div>
       </li>
     </ul>
   </div>
