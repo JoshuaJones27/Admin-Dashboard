@@ -1,5 +1,15 @@
-<app-sidenav (onToggleSideNav)="onToggleSideNav($event)"></app-sidenav>
-<app-body
-  [collapsed]="isSideNavCollapsed"
-  [screenWidth]="screenWidth"
-></app-body>
+<!-- app.component.html -->
+
+<!-- Show app-login component if router link is '' or '/login' -->
+<ng-container *ngIf="isLoginPage()">
+  <app-login></app-login>
+</ng-container>
+
+<!-- Show app-sidenav and app-body components for other router links -->
+<ng-container *ngIf="!isLoginPage()">
+  <app-sidenav (onToggleSideNav)="onToggleSideNav($event)"></app-sidenav>
+  <app-body
+    [collapsed]="isSideNavCollapsed"
+    [screenWidth]="screenWidth"
+  ></app-body>
+</ng-container>

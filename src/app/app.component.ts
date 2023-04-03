@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface SideNavToggle {
   screenWidth: number;
@@ -15,6 +16,11 @@ export class AppComponent {
 
   isSideNavCollapsed = false;
   screenWidth = 0;
+  constructor(private router: Router) {}
+
+  isLoginPage() {
+    return this.router.url === '' || this.router.url === '/login';
+  }
 
   onToggleSideNav(data: SideNavToggle): void {
     this.screenWidth = data.screenWidth;
