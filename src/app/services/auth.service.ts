@@ -7,9 +7,7 @@ import { from, Observable } from 'rxjs';
 })
 export class AuthService {
   private baseUrl = 'https://localhost:7017/api/Users/';
-  // private httpagent = new this.httpagent({
-  //   rejectUnauthorized: false,
-  // });
+
   constructor() {}
 
   login(username: string, password: string): Observable<any> {
