@@ -2,8 +2,18 @@
   align-items: center;
 }
 
+.card-head {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 .card-body-um {
   padding: 10px 10px 10px 10px;
+}
+
+#titulo {
+  margin: 10px 0px 10px 0px;
 }
 
 #formContent {

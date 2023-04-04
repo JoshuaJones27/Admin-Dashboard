@@ -11,4 +11,19 @@ export const navbarData: INavbarData[] = [
     icon: 'fal fa-building',
     label: 'Empresa',
   },
+  {
+    routeLink: 'utilizadores',
+    icon: 'fal fa-users',
+    label: 'Utilizadores',
+    items: [
+      {
+        routeLink: 'utilizadores/gerarconvite',
+        label: 'Convite',
+      },
+      {
+        routeLink: 'utilizadores/outracoisa',
+        label: 'Outra Coisa',
+      },
+    ],
+  },
 ];
