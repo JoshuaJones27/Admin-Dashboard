@@ -1,0 +1,54 @@
+<title>Empresa</title>
+<h1>Empresa</h1>
+<div class="card">
+  <div class="card-head">
+    <h2 id="titulo">Adicionar Empresa</h2>
+
+    <div id="formContent">
+      <form (submit)="onSubmit($event)">
+        <div class="card-body-um">
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Nome Empresa"
+            (focus)="onFocus($event)"
+            (blur)="onBlur($event)"
+            [(ngModel)]="name"
+          />
+        </div>
+        <div class="card-body-dois">
+          <h3>Credenciais:</h3>
+          <input
+            type="text"
+            id="connectionName"
+            name="connectionName"
+            placeholder="Nome"
+            (focus)="onFocus($event)"
+            (blur)="onBlur($event)"
+            [(ngModel)]="connectionName"
+          />
+          <input
+            type="password"
+            id="connectionPassword"
+            name="connectionPassword"
+            placeholder="Palavra Passe"
+            (focus)="onFocus($event)"
+            (blur)="onBlur($event)"
+            [(ngModel)]="connectionPassword"
+          />
+          <input
+            type="password"
+            id="confirmConnectionPassword"
+            name="confirmConnectionPassword"
+            placeholder="Confirmar Palavra Passe"
+            (focus)="onFocus($event)"
+            (blur)="onBlur($event)"
+            [(ngModel)]="confirmConnectionPassword"
+          />
+          <input type="submit" value="Criar Empresa" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

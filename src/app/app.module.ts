@@ -11,6 +11,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 
 import { OverlayModule } from '@angular/cdk/overlay';
 import { LoginComponent } from './login/login.component';
+import { EmpresaComponent } from './empresa/empresa.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { LoginComponent } from './login/login.component';
     BodyComponent,
     SidenavComponent,
     LoginComponent,
+    EmpresaComponent,
   ],
   imports: [
     BrowserModule,
