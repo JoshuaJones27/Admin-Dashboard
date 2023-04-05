@@ -1,1 +1,33 @@
-<p>utilizadores-gerarconvite works!</p>
+<title>Gerar Convite</title>
+<h1>Utilizadores</h1>
+<div class="card">
+  <div class="card-head">
+    <h2 id="titulo">Gerar Convite</h2>
+  </div>
+
+  <div class="card-body">
+    <div id="formContent">
+      <form>
+        <div class="card-body-id">
+          <input
+            type="text"
+            id="idUtilizador"
+            name="idUtilizador"
+            placeholder="ID Utilizador"
+          />
+          <input type="submit" value="Procurar ID" />
+        </div>
+        <div class="card-body-dados">
+          <textarea name="user-info" readonly></textarea>
+        </div>
+
+        <div class="card-body-gerarconvite">
+          <input type="submit" value="Gerar Convite" />
+          <textarea name="codigo-gerado" readonly></textarea>
+        </div>
+
+        <div class="card-body-codigo"></div>
+      </form>
+    </div>
+  </div>
+</div>
