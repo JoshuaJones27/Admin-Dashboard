@@ -17,6 +17,7 @@ export class EmpresaService {
     confirmConnectionPassword: string
   ): Observable<any> {
     console.log('Ola do auth service');
+    console.log(this.baseUrl);
 
     const promise = axios.post(`${this.baseUrl}RegisterCompany`, {
       name,

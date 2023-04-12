@@ -61,7 +61,10 @@ export class EmpresaComponent {
             window.location.href = '/dashboard';
           },
           (error) => {
-            console.log(error);
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+            console.log(error.config);
             // Handle login error here
           }
         );
