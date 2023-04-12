@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { EmpresaComponent } from './empresa/empresa.component';
 import { UtilizadoresComponent } from './utilizadores/utilizadores.component';
+import { PedidosComponent } from './pedidos/pedidos.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -17,6 +18,7 @@ const routes: Routes = [
         (m) => m.UtilizadoresModule
       ),
   },
+  { path: 'pedidos', component: PedidosComponent },
 ];
 
 @NgModule({

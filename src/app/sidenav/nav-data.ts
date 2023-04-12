@@ -26,4 +26,9 @@ export const navbarData: INavbarData[] = [
       },
     ],
   },
+  {
+    routeLink: 'pedidos',
+    icon: 'fal fa-inbox',
+    label: 'Pedidos',
+  },
 ];

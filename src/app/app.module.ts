@@ -13,6 +13,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { LoginComponent } from './login/login.component';
 import { EmpresaComponent } from './empresa/empresa.component';
 import { SublevelMenuComponent } from './sidenav/sublevel-menu.component';
+import { PedidosComponent } from './pedidos/pedidos.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SublevelMenuComponent } from './sidenav/sublevel-menu.component';
     LoginComponent,
     EmpresaComponent,
     SublevelMenuComponent,
+    PedidosComponent,
   ],
   imports: [
     BrowserModule,
