@@ -10,6 +10,16 @@ export const navbarData: INavbarData[] = [
     routeLink: 'empresa',
     icon: 'fal fa-building',
     label: 'Empresa',
+    items: [
+      {
+        routeLink: 'empresa/adicionarempresa',
+        label: 'Criar Empresa',
+      },
+      {
+        routeLink: 'empresa/gerarconvite',
+        label: 'Convite Grupo',
+      },
+    ],
   },
   {
     routeLink: 'utilizadores',

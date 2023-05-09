@@ -37,6 +37,7 @@ export class LoginComponent {
       this.authService.login(this.username, this.password).subscribe(
         (response) => {
           console.log(response);
+
           // Redirect to the dashboard on successful login
           window.location.href = '/dashboard';
         },
