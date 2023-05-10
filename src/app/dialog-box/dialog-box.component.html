@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Editar Pedido</h2>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Request Name"
+        formControlName="requestName"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Request Method</mat-label>
+      <select matNativeControl formControlName="requestMethod">
+        <option value="">Select an option</option>
+        <option value="GET">GET</option>
+        <option value="POST">POST</option>
+        <option value="PUT">PUT</option>
+        <option value="DELETE">DELETE</option>
+        <option value="PATCH">PATCH</option>
+        <option value="HEAD">HEAD</option>
+        <option value="OPTIONS">OPTIONS</option>
+      </select>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-button color="primary" (click)="submit()">Save</button>
+</div>

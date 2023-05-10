@@ -9,6 +9,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -43,6 +45,8 @@ import { SublevelMenuComponent } from './sidenav/sublevel-menu.component';
     MatFormFieldModule,
     MatSelectModule,
     MatSnackBarModule,
+    MatSortModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

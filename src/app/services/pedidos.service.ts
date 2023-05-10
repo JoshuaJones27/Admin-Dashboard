@@ -26,4 +26,21 @@ export class PedidosService {
     const promise = axios.get(`${this.baseUrl}GetRequest`);
     return from(promise);
   }
+
+  editPedido(
+    requestId: string,
+    requestName: string,
+    requestMethod: string
+  ): Observable<any> {
+    console.log('Hello from the pedidos service');
+    console.log(this.baseUrl);
+
+    const promise = axios.put(`${this.baseUrl}EditRequest`, {
+      requestId,
+      requestName,
+      requestMethod,
+    });
+
+    return from(promise);
+  }
 }
