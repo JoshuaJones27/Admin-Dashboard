@@ -12,50 +12,20 @@
   padding: 10px 10px 10px 10px;
 }
 
-.card-pedido {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-
-  select {
-    appearance: none;
-    background: white;
-    border: 2px solid gray;
-    border-radius: 4px;
-    padding: 10px;
-    font-size: 16px;
-    color: black;
-    width: 90%;
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    }
-  }
-}
-
 #titulo {
   margin: 10px 0px 10px 0px;
 }
 
 #formContent {
-  border-radius: 10px 10px 10px 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
   background: 30px;
   padding: 30px;
-  width: 400px;
+  width: 90%;
   max-width: 450px;
   position: relative;
   padding: 0px;
-  box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
   box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
   text-align: center;
 }

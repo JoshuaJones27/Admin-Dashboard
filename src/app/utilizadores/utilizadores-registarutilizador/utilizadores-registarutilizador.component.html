@@ -1,0 +1,50 @@
+<title>Utilizador</title>
+<h1>Utilizador</h1>
+<div class="card">
+  <div class="card-head">
+    <h2 id="titulo">Registar Utilizador</h2>
+
+    <div id="formContent">
+      <form (submit)="onSubmit($event)">
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Nome Utilizador"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)"
+          [(ngModel)]="username"
+        />
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Palavra Passe"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)"
+          [(ngModel)]="password"
+        />
+        <input
+          type="password"
+          id="confPassword"
+          name="confPassword"
+          placeholder="Confirmar Palavra Passe"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)"
+          [(ngModel)]="confPassword"
+        />
+        <input
+          type="text"
+          id="userType"
+          name="userType"
+          placeholder="Tipo Utilizador"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)"
+          [(ngModel)]="userType"
+        />
+
+        <input type="submit" value="Registar Utilizador" />
+      </form>
+    </div>
+  </div>
+</div>

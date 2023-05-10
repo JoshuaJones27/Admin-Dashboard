@@ -31,8 +31,8 @@ export const navbarData: INavbarData[] = [
         label: 'Convite',
       },
       {
-        routeLink: 'utilizadores/outracoisa',
-        label: 'Outra Coisa',
+        routeLink: 'utilizadores/registarutilizador',
+        label: 'Registar Utilizador',
       },
     ],
   },
@@ -40,5 +40,15 @@ export const navbarData: INavbarData[] = [
     routeLink: 'pedidos',
     icon: 'fal fa-inbox',
     label: 'Pedidos',
+    items: [
+      {
+        routeLink: 'pedidos/fazerpedido',
+        label: 'Fazer Pedido',
+      },
+      {
+        routeLink: 'pedidos/editarpedido',
+        label: 'Editar Pedido',
+      },
+    ],
   },
 ];

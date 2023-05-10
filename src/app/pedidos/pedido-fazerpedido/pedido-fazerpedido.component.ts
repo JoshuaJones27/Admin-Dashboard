@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { PedidosService } from '../services/pedidos.service';
+import { PedidosService } from '../../services/pedidos.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-pedidos',
-  templateUrl: './pedidos.component.html',
-  styleUrls: ['./pedidos.component.scss'],
+  selector: 'app-pedido-fazerpedido',
+  templateUrl: './pedido-fazerpedido.component.html',
+  styleUrls: ['./pedido-fazerpedido.component.scss'],
 })
-export class PedidosComponent {
+export class PedidoFazerpedidoComponent {
   requestName: string = '';
   requestMethod: string = '';
   defaultRequestName: string = '';

@@ -6,6 +6,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,7 +20,6 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { LoginComponent } from './login/login.component';
 import { SublevelMenuComponent } from './sidenav/sublevel-menu.component';
-import { PedidosComponent } from './pedidos/pedidos.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,6 @@ import { PedidosComponent } from './pedidos/pedidos.component';
     SidenavComponent,
     LoginComponent,
     SublevelMenuComponent,
-    PedidosComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +40,9 @@ import { PedidosComponent } from './pedidos/pedidos.component';
     MatCheckboxModule,
     MatPaginatorModule,
     MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
