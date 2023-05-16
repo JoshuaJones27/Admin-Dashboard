@@ -46,11 +46,12 @@ export class EmpresaService {
     }
   }
 
-  getCompanyApplications(): Observable<any> {
+  getInviteToCompany(payload: any): Observable<any> {
     const companyId = this.sharedService.getCompanyId();
     if (companyId) {
-      const promise = axios.get(
-        `${this.baseUrl}GetCompanyApplications?companyID=${companyId}`
+      const promise = axios.post(
+        `${this.baseUrl}GetInviteToCompany?companyID=${companyId}`,
+        payload
       );
       return from(promise);
     } else {
@@ -58,64 +59,13 @@ export class EmpresaService {
     }
   }
 
-  getCompanyDetails(): Observable<any> {
+  getInviteToGroup(payload: any): Observable<any> {
     const companyId = this.sharedService.getCompanyId();
     if (companyId) {
-      const promise = axios.get(
-        `${this.baseUrl}GetCompany?companyID=${companyId}`
-      );
-      const applicationsPromise = axios.get(
-        `${this.baseUrl}GetCompanyApplications?companyID=${companyId}`
-      );
-      const usersPromise = axios.get(
-        `${this.baseUrl}GetAssociatedUsers?companyID=${companyId}`
-      );
-
-      return from(
-        Promise.all([promise, applicationsPromise, usersPromise])
-      ).pipe(
-        map((responses: AxiosResponse[]) => {
-          const companyData = responses[0].data;
-          const applicationsData = responses[1].data;
-          const usersData = responses[2].data;
-
-          const applications = applicationsData.map((application: any) => ({
-            applicationId: application.applicationID,
-            usersCompany: application.UsersCompany.map((userCompany: any) => ({
-              internalID: userCompany.InternalID,
-              internalFullName: userCompany.InternalFullName,
-              internalEmail: userCompany.InternalEmail,
-            })),
-          }));
-
-          const users = usersData.responseData.map((user: any) => ({
-            telegramName: user.usertelegram.telegramName,
-            telegramUsername: user.usertelegram.telegramUsername,
-            companiesRoles: user.companiesRoles.map((role: any) => ({
-              roleID: role.roleid,
-              roleName: role.rolename,
-            })),
-          }));
-
-          return {
-            companyId: companyData._id,
-            name: companyData.Name,
-            connectionName: companyData.ConnectionName,
-            connectionPassword: companyData.ConnectionPassword,
-            applications,
-            users,
-          };
-        })
-      );
+      const promise = axios.post(`${this.baseUrl}InviteGroup`, payload);
+      return from(promise);
     } else {
       return throwError('Company ID is not defined');
     }
-  }
-
-  getAssociatedUsers(companyID: string): Observable<any> {
-    const promise = axios.get(
-      `${this.baseUrl}GetAssociatedUsers?companyID=${companyID}`
-    );
-    return from(promise);
   }
 }

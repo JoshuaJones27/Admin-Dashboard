@@ -1,21 +1,11 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
 import { SelectionModel } from '@angular/cdk/collections';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { EmpresaService } from 'src/app/services/empresa.service';
-import { combineLatest, map, of, switchMap } from 'rxjs';
-import { AuthService } from 'src/app/services/auth.service';
 import { SharedService } from 'src/app/services/shared.service';
-import { forkJoin, Observable, from } from 'rxjs';
-import axios, { AxiosResponse } from 'axios';
-
-export interface Element {
-  internalID: number;
-  internalFullName: string;
-  internalEmail: string;
-  applicationID: number;
-}
 
 @Component({
   selector: 'app-empresa-convitegrupo',
@@ -23,150 +13,112 @@ export interface Element {
   styleUrls: ['./empresa-convitegrupo.component.scss'],
 })
 export class EmpresaConvitegrupoComponent implements OnInit {
-  displayedColumns: string[] = [
-    'select',
-    'internalID',
-    'internalFullName',
-    'internalEmail',
-    'applicationId',
-    //'applicationName'
-  ];
-
-  @Input() applicationId: string = '';
-
-  usersData: Element[] = [];
-
-  dataSource = new MatTableDataSource<Element>(this.usersData);
-
-  @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
-  selection = new SelectionModel<Element>(true, []);
-
-  baseUrl = 'https://localhost:7017/api/Companies/';
+  empresasData!: MatTableDataSource<any>;
+  displayedColumns: string[] = ['select', 'internalID', 'applicationid'];
 
   companyId: string | undefined;
-  companyData: any;
+
+  selection = new SelectionModel<any>(true, []);
 
   constructor(
     private empresaService: EmpresaService,
-    private sharedService: SharedService
-  ) {
-    this.applicationId = '';
-  }
+    private sharedService: SharedService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
-    console.log('Application ID:', this.applicationId);
     this.companyId = this.sharedService.getCompanyId();
-    console.log('Company ID:', this.companyId);
+    console.log('CompanyId:', this.companyId);
 
-    this.empresaService
-      .getCompanyID()
-      .pipe(
-        switchMap((response: any) => {
-          console.log('Company Data:', response.data);
-          const companyData = response.data;
-          const companyId = response.data._id;
-          const companyApplications = response.data.companyApplications;
-          const applicationData =
-            companyApplications &&
-            companyApplications.find(
-              (app: any) => app._id === this.applicationId
-            );
-          console.log('Application ID:', this.applicationId);
+    this.empresaService.getCompanyID().subscribe((response) => {
+      console.log('CompanyId:', this.companyId);
+      console.log('Response Data:', response.data);
+      this.empresasData = new MatTableDataSource(
+        response.data.model.companyApplications.flatMap((application: any) =>
+          application.groups.flatMap(
+            (group: any) => (
+              console.log('application:', application),
+              console.log('group:', group),
+              {
+                applicationid: application.applicationid,
+                internalID: group.internalID,
+              }
+            )
+          )
+        )
+      );
+      console.log('empresasData:', this.empresasData);
+      console.log('empresasData.data:', this.empresasData.data);
 
-          console.log('Application Data:', applicationData);
-          const users = response.data.UsersCompany
-            ? response.data.UsersCompany.map((user: any) => ({
-                internalID: user.internalID,
-                internalFullName: user.internalFullName,
-                internalEmail: user.internalEmail,
-              }))
-            : [];
-
-          console.log('Users:', users);
-          const data = {
-            companyData,
-            companyId,
-            applicationData,
-            users,
-            usersData: users,
-          };
-          console.log('Data:', data);
-          return of(data);
-        })
-      )
-      .subscribe((data) => {
-        console.log('Final Data:', data);
-        this.usersData = data.usersData;
-        this.dataSource.data = this.usersData;
-      });
+      this.empresasData.sort = this.sort;
+      this.empresasData.paginator = this.paginator;
+    });
   }
 
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.empresasData.filter = filterValue.trim().toLowerCase();
   }
 
   masterToggle() {
     this.isAllSelected()
       ? this.selection.clear()
-      : this.dataSource.data.forEach((row) => this.selection.select(row));
+      : this.empresasData.data.forEach((row: any) =>
+          this.selection.select(row)
+        );
   }
 
-  filteredData: Element[] = [];
-
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-
-    this.dataSource.sortingDataAccessor = (item, property) => {
-      switch (property) {
-        case 'internalID':
-          return item.internalID;
-        case 'internalFullName':
-          return item.internalFullName;
-        case 'internalEmail':
-          return item.internalEmail;
-        case 'applicationId':
-          return item.applicationId;
-        default:
-          return item[property];
-      }
-    };
-
-    this.dataSource.filterPredicate = (
-      data: Record<string, any>,
-      filter: string
-    ) => {
-      const dataStr = Object.keys(data)
-        .reduce((currentTerm: string, key: string) => {
-          return currentTerm + data[key] + '◬';
-        }, '')
-        .toLowerCase();
-      const transformedFilter = filter.trim().toLowerCase();
-      return dataStr.indexOf(transformedFilter) !== -1;
-    };
-
-    this.dataSource.filter = '';
-
-    this.dataSource.paginator.firstPage();
-
-    this.dataSource.connect().subscribe((data) => {
-      this.filteredData = data;
-    });
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.empresasData.data.length;
+    return numSelected === numRows;
   }
 
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  onRowSelect(row: any) {
+    this.selection.clear();
+    this.selection.select(row);
+    console.log('Selected row:', row);
   }
-}
 
-export interface Element {
-  [key: string]: any;
-  internalID: number;
-  internalFullName: string;
-  internalEmail: string;
-  applicationId: string;
+  disableRowSelection(row: any) {
+    return (
+      this.selection.selected.length > 0 && !this.selection.isSelected(row)
+    );
+  }
+
+  enviarConvite() {
+    const selectedRows = this.selection.selected;
+    if (selectedRows.length > 0) {
+      selectedRows.forEach((row) => {
+        const payload = {
+          internalID: row.internalID,
+          companyID: this.companyId,
+          applicationID: row.applicationid,
+        };
+        console.log(this.companyId);
+        console.log('Payload:', payload);
+
+        this.empresaService.getInviteToGroup(payload).subscribe(
+          (response) => {
+            console.log('API Response:', response);
+            this.snackBar.open(`ID: ${response.data.model.id}`, 'Close', {
+              verticalPosition: 'bottom', // Position the snackbar at the top
+            });
+          },
+          (error) => {
+            console.log('API Error:', error);
+            this.snackBar.open('Empresa com grupo já atribuído', 'Close', {
+              duration: 3000, // Duration in milliseconds
+              verticalPosition: 'bottom', // Position the snackbar at the top
+            });
+          }
+        );
+      });
+    } else {
+      console.log('No rows selected');
+    }
+  }
 }

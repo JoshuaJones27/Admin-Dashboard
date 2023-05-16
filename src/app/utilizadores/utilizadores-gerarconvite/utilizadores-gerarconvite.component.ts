@@ -3,14 +3,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { SelectionModel } from '@angular/cdk/collections';
-
-export interface Element {
-  [key: string]: any;
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
+import { EmpresaService } from 'src/app/services/empresa.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-utilizadores-gerarconvite',
@@ -18,105 +12,152 @@ export interface Element {
   styleUrls: ['./utilizadores-gerarconvite.component.scss'],
 })
 export class UtilizadoresGerarconviteComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
+  empresasData!: MatTableDataSource<any>;
   displayedColumns: string[] = [
     'select',
-    'position',
-    'name',
-    'weight',
-    'symbol',
+    'internalID',
+    'internalFullName',
+    'internalEmail',
+    'telegramID',
+    'applicationid',
   ];
-  dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
 
-  @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  companyId: string | undefined;
 
-  selection = new SelectionModel<Element>(true, []);
+  selection = new SelectionModel<any>(true, []);
 
-  constructor() {}
+  constructor(
+    private empresaService: EmpresaService,
+    private sharedService: SharedService
+  ) {}
 
-  ngOnInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+  ngOnInit(): void {
+    this.companyId = this.sharedService.getCompanyId();
+    console.log(this.companyId);
+
+    this.empresaService.getCompanyID().subscribe((response) => {
+      console.log(this.companyId);
+      console.log(response.data);
+      this.empresasData = new MatTableDataSource(
+        response.data.model.companyApplications.flatMap((application: any) =>
+          application.usersCompany.map((user: any) => ({
+            ...user,
+            applicationid: application.applicationid,
+          }))
+        )
+      );
+
+      this.empresasData.sort = this.sort;
+      this.empresasData.paginator = this.paginator;
+    });
   }
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
+    const numRows = this.empresasData.data.length;
     return numSelected === numRows;
   }
 
   masterToggle() {
-    this.isAllSelected()
-      ? this.selection.clear()
-      : this.dataSource.data.forEach((row) => this.selection.select(row));
+    if (this.empresasData) {
+      this.empresasData.data.forEach((row: any) => {
+        if (!row.telegramID) {
+          this.selection.toggle(row);
+        }
+      });
+    }
   }
 
-  filteredData: Element[] = [];
+  // checkboxChange(row: any) {
+  //   if (row.telegramID) {
+  //     this.selection.deselect(row);
+  //     console.log('Deselected row:', row);
+  //   }
+  // }
 
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+  checkboxChange(row: any) {
+    if (row.telegramID) {
+      this.selection.deselect(row);
+      console.log('Deselected row:', row);
+    } else {
+      this.selection.toggle(row);
+      console.log('Selected row:', row);
+    }
+  }
 
-    this.dataSource.sortingDataAccessor = (item, property) => {
-      switch (property) {
-        case 'position':
-          return item[property];
-        case 'name':
-          return item[property].toLowerCase();
-        case 'weight':
-          return item[property];
-        case 'symbol':
-          return item[property].toLowerCase();
-        default:
-          return item[property];
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.empresasData.filter = filterValue.trim().toLowerCase();
+  }
+
+  onRowClicked(row: any) {
+    console.log(row);
+  }
+
+  selectedApplicationIds: string[] = [];
+
+  onRowSelect(row: any) {
+    const duplicateSelected = this.selectedApplicationIds.includes(
+      row.applicationid
+    );
+    if (!duplicateSelected) {
+      this.selection.toggle(row);
+      if (this.selection.isSelected(row)) {
+        this.selectedApplicationIds.push(row.applicationid);
+      } else {
+        const index = this.selectedApplicationIds.indexOf(row.applicationid);
+        if (index !== -1) {
+          this.selectedApplicationIds.splice(index, 1);
+        }
       }
-    };
+    }
+  }
 
-    this.dataSource.filterPredicate = (data, filter) => {
-      const dataStr = Object.keys(data)
-        .reduce((currentTerm: string, key: string) => {
-          return currentTerm + (data as { [key: string]: any })[key] + '◬';
-        }, '')
-        .toLowerCase();
-      const transformedFilter = filter.trim().toLowerCase();
-      return dataStr.indexOf(transformedFilter) !== -1;
-    };
+  isApplicationIdSelected(applicationid: string): boolean {
+    return this.selectedApplicationIds.includes(applicationid);
+  }
 
-    this.dataSource.filter = '';
-    this.dataSource.paginator.firstPage();
+  disableRowSelection(row: any): boolean {
+    const selectedRows = this.selection.selected;
+    const duplicateSelected = selectedRows.some(
+      (selectedRow) => selectedRow.applicationid === row.applicationid
+    );
+    return duplicateSelected;
+  }
 
-    this.dataSource.connect().subscribe((data) => {
-      this.filteredData = data;
-    });
+  enviarConvite() {
+    const selectedRows = this.selection.selected;
+    if (selectedRows.length > 0) {
+      const users = selectedRows.map((row) => ({
+        internalid: row.internalID.toString(),
+        applicationid: row.applicationid,
+      }));
+
+      const payload = {
+        users: users,
+        companyid: this.companyId,
+        linitdate: new Date().toISOString(),
+      };
+
+      console.log('Payload:', payload);
+
+      // Call the API to send the payload
+      this.empresaService.getInviteToCompany(payload).subscribe(
+        (response) => {
+          console.log('API Response:', response);
+          console.log('Messages:', response.data.messages);
+          // Handle success
+        },
+        (error) => {
+          console.log('API Error:', error);
+          // Handle error
+        }
+      );
+    } else {
+      console.log('No rows selected');
+    }
   }
 }
-
-export interface Element {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: Element[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-  { position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na' },
-  { position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg' },
-  { position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al' },
-  { position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si' },
-  { position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P' },
-  { position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S' },
-  { position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl' },
-  { position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar' },
-  { position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K' },
-  { position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca' },
-];

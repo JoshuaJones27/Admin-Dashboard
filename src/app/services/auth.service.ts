@@ -27,11 +27,39 @@ export class AuthService {
               ? data.model.companiesRoles[0].companyid
               : undefined;
 
+          const userType = Number(data.model.usertype);
+
+          if (!isNaN(userType)) {
+            console.log('Access Token:', this.accessToken);
+            console.log('Refresh Token:', this.refreshToken);
+            console.log('Company ID:', companyId);
+            console.log('User Type:', userType);
+
+            this.sharedService.setCompanyId(companyId);
+            this.sharedService.setUserType(userType);
+            console.log(
+              'Shared Company ID:',
+              this.sharedService.getCompanyId()
+            );
+          } else {
+            console.log('Invalid user type:', data.model.usertype);
+          }
+
+          // console.log('Access Token:', this.accessToken);
+          // console.log('Refresh Token:', this.refreshToken);
+          // console.log('Company ID:', companyId);
+          // console.log('User Type:', userType);
+
+          // this.sharedService.setCompanyId(companyId);
+          // console.log('Shared Company ID:', this.sharedService.getCompanyId());
+
           console.log('Access Token:', this.accessToken);
           console.log('Refresh Token:', this.refreshToken);
           console.log('Company ID:', companyId);
+          console.log('User Type:', userType);
 
           this.sharedService.setCompanyId(companyId);
+          this.sharedService.setUserType(userType);
           console.log('Shared Company ID:', this.sharedService.getCompanyId());
 
           debugger;
