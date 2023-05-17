@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PedidoFazerpedidoComponent } from './pedido-fazerpedido/pedido-fazerpedido.component';
 import { PedidoEditarpedidoComponent } from './pedido-editarpedido/pedido-editarpedido.component';
+import { PedidoCriaropcaopedidoComponent } from './pedido-criaropcaopedido/pedido-criaropcaopedido.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'editarpedido',
     component: PedidoEditarpedidoComponent,
+  },
+  {
+    path: 'criaropcaopedido',
+    component: PedidoCriaropcaopedidoComponent,
   },
 ];
 

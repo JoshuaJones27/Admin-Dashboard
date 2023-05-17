@@ -16,14 +16,16 @@ export class FormularioComponent {
   addField() {
     const lastField = this.formFields[this.formFields.length - 1];
 
-    if (lastField && (!lastField.title || !lastField.type)) {
-      // Check if the last field is incomplete before adding a new field
-      alert('Please fill in the previous field before adding a new one.');
-      return;
-    }
+    console.log('Last Field:', lastField);
 
-    const clonedField = cloneDeep(lastField);
+    setTimeout(() => {
+      if (lastField && (!lastField.title || !lastField.type)) {
+        // Check if the last field is incomplete before adding a new field
+        alert('Please fill in the previous field before adding a new one.');
+        return;
+      }
+    });
+
     this.formFields.push({ title: '', type: 'input' });
-    Object.assign(lastField, clonedField);
   }
 }

@@ -10,34 +10,6 @@ import { PedidosService } from '../services/pedidos.service';
   styleUrls: ['./dialog-box.component.scss'],
 })
 export class DialogBoxComponent {
-  // form: FormGroup;
-
-  // constructor(
-  //   public dialogRef: MatDialogRef<DialogBoxComponent>,
-  //   @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
-  //   private fb: FormBuilder
-  // ) {
-  //   this.form = this.fb.group({
-  //     requestName: [data.requestName, Validators.required],
-  //     requestMethod: [data.requestMethod, Validators.required],
-  //   });
-  // }
-
-  // save() {
-  //   if (this.form.valid) {
-  //     const result = {
-  //       ...this.data,
-  //       requestName: this.form.value.requestName,
-  //       requestMethod: this.form.value.requestMethod,
-  //     };
-  //     this.dialogRef.close(result);
-  //   }
-  // }
-
-  // cancel() {
-  //   this.dialogRef.close();
-  // }
-
   form: FormGroup;
 
   constructor(

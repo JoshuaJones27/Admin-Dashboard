@@ -13,6 +13,7 @@ import { PedidosComponent } from './pedidos.component';
 import { PedidoFazerpedidoComponent } from './pedido-fazerpedido/pedido-fazerpedido.component';
 import { PedidoEditarpedidoComponent } from './pedido-editarpedido/pedido-editarpedido.component';
 import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
+import { PedidoCriaropcaopedidoComponent } from './pedido-criaropcaopedido/pedido-criaropcaopedido.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
     PedidoEditarpedidoComponent,
     PedidosComponent,
     DialogBoxComponent,
+    PedidoCriaropcaopedidoComponent,
   ],
   imports: [
     CommonModule,

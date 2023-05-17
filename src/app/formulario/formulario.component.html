@@ -1,35 +1,11 @@
 <title>Formulário</title>
 <h1>Formulário</h1>
+
 <form>
-  <div *ngFor="let field of formFields">
-    <mat-form-field>
-      <input matInput placeholder="Field Title" [(ngModel)]="field.title" />
-    </mat-form-field>
-    <mat-form-field>
-      <mat-select placeholder="Select Field Type" [(ngModel)]="field.type">
-        <mat-option value="input">Input</mat-option>
-        <mat-option value="textarea">Textarea</mat-option>
-        <mat-option value="datepicker">Datepicker</mat-option>
-        <!-- Add more field types as needed -->
-      </mat-select>
-    </mat-form-field>
-    <div *ngIf="field.type === 'input'">
-      <mat-form-field>
-        <input matInput placeholder="Input Field" />
-      </mat-form-field>
-    </div>
-    <div *ngIf="field.type === 'textarea'">
-      <mat-form-field>
-        <textarea matInput placeholder="Textarea Field"></textarea>
-      </mat-form-field>
-    </div>
-    <div *ngIf="field.type === 'datepicker'">
-      <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="Choose a date" />
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-    </div>
-  </div>
+  <label for="formTitle">Form Title:</label>
+  <input type="text" id="formTitle" name="formTitle" />
+
+  <!-- Other form fields go here -->
+
+  <button type="submit">Submit</button>
 </form>
-<button mat-raised-button (click)="addField()">Add Field</button>

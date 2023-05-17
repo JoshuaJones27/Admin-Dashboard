@@ -49,6 +49,10 @@ export const navbarData: INavbarData[] = [
         routeLink: 'pedidos/editarpedido',
         label: 'Editar Pedido',
       },
+      {
+        routeLink: 'pedidos/criaropcaopedido',
+        label: 'Criar Opção Pedido',
+      },
     ],
   },
   {
