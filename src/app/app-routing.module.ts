@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
+import { FormularioComponent } from './formulario/formulario.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -23,6 +24,10 @@ const routes: Routes = [
     path: 'pedidos',
     loadChildren: () =>
       import('./pedidos/pedidos.module').then((m) => m.PedidosModule),
+  },
+  {
+    path: 'formulario',
+    component: FormularioComponent,
   },
 ];
 

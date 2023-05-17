@@ -51,4 +51,9 @@ export const navbarData: INavbarData[] = [
       },
     ],
   },
+  {
+    routeLink: 'formulario',
+    icon: 'fal fa-sticky-note',
+    label: 'Formulario',
+  },
 ];

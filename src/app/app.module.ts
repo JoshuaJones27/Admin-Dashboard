@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { TradutorService } from './services/tradutor.service';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -16,6 +17,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -27,6 +29,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { LoginComponent } from './login/login.component';
 import { SublevelMenuComponent } from './sidenav/sublevel-menu.component';
+import { FormularioComponent } from './formulario/formulario.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,7 @@ import { SublevelMenuComponent } from './sidenav/sublevel-menu.component';
     SidenavComponent,
     LoginComponent,
     SublevelMenuComponent,
+    FormularioComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,8 +61,9 @@ import { SublevelMenuComponent } from './sidenav/sublevel-menu.component';
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
+    MatDatepickerModule,
   ],
-  providers: [],
+  providers: [TradutorService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

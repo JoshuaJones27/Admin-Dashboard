@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { SharedService } from '../services/shared.service';
 import { EmpresaService } from '../services/empresa.service';
+import { TradutorService } from '../services/tradutor.service';
+import { IdiomaService } from '../services/idioma.service';
 
 @Component({
   selector: 'app-body',
@@ -16,8 +18,18 @@ export class BodyComponent {
 
   constructor(
     private sharedService: SharedService,
-    private empresaService: EmpresaService
+    private empresaService: EmpresaService,
+    private tradutorService: TradutorService,
+    private idiomaService: IdiomaService
   ) {}
+
+  translate(key: string): string {
+    return this.tradutorService.translate(key);
+  }
+
+  changeLanguage(language: string): void {
+    this.tradutorService.setLanguage(language);
+  }
 
   ngOnInit(): void {
     this.companyId = this.sharedService.getCompanyId();

@@ -6,9 +6,11 @@
       <button mat-button [matMenuTriggerFor]="menuEmpresa" aria-label="Menu 1">
         {{ companyName }}
       </button>
+
       <button mat-button [matMenuTriggerFor]="menuIdioma" aria-label="Menu 2">
-        Idioma
+        {{ translate("button.idioma") }}
       </button>
+
       <button
         mat-button
         [matMenuTriggerFor]="menuUtilizador"
@@ -26,8 +28,8 @@
   </mat-menu>
 
   <mat-menu #menuIdioma="matMenu">
-    <button mat-menu-item>Portugues</button>
-    <button mat-menu-item>Ingles</button>
+    <button mat-menu-item (click)="changeLanguage('pt')">Português</button>
+    <button mat-menu-item (click)="changeLanguage('en')">Inglês</button>
   </mat-menu>
 
   <mat-menu #menuUtilizador="matMenu">
