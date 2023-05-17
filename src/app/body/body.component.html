@@ -1,3 +1,39 @@
 <div class="body" [ngClass]="getBodyClass()">
+  <mat-toolbar>
+    <div class="spacer"></div>
+    <!-- Add a spacer to push the buttons to the right -->
+    <div class="nav-buttons">
+      <button mat-button [matMenuTriggerFor]="menuEmpresa" aria-label="Menu 1">
+        {{ companyName }}
+      </button>
+      <button mat-button [matMenuTriggerFor]="menuIdioma" aria-label="Menu 2">
+        Idioma
+      </button>
+      <button
+        mat-button
+        [matMenuTriggerFor]="menuUtilizador"
+        aria-label="Menu Utilizador"
+      >
+        Utilizador
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <mat-menu #menuEmpresa="matMenu">
+    <button mat-menu-item>Option 1</button>
+    <button mat-menu-item>Option 2</button>
+    <button mat-menu-item>Option 3</button>
+  </mat-menu>
+
+  <mat-menu #menuIdioma="matMenu">
+    <button mat-menu-item>Portugues</button>
+    <button mat-menu-item>Ingles</button>
+  </mat-menu>
+
+  <mat-menu #menuUtilizador="matMenu">
+    <button mat-menu-item>Mudar Palavra Passe</button>
+    <button mat-menu-item>Logout</button>
+  </mat-menu>
+
   <router-outlet></router-outlet>
 </div>

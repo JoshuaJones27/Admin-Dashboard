@@ -1,5 +1,7 @@
 .body {
   width: calc(100% - 5rem);
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
   margin-left: 5rem;
   z-index: 0;
   position: relative;
@@ -17,4 +19,14 @@
 .body-md-screen {
   width: calc(100% - 5rem);
   margin-left: 5rem;
+}
+
+.mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 16px;
 }
