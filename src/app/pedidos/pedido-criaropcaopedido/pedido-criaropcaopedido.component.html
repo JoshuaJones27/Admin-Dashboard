@@ -1,1 +1,56 @@
-<p>pedido-criaropcaopedido works!</p>
+<title>Pedidos</title>
+
+<div class="container">
+  <div class="card">
+    <div class="head">
+      <h2 class="titulo">Criar Opção Pedido</h2>
+
+      <div class="formContent">
+        <div class="informacao">
+          <span>ID Pedido:</span>
+          <input type="text" [value]="idPedido" readonly class="texto" />
+        </div>
+        <div class="informacao">
+          <span>ID Empresa:</span>
+          <input type="text" [value]="companyId" readonly class="texto" />
+        </div>
+        <div class="informacao">
+          <span>Nome Aplicação:</span>
+          <select [(ngModel)]="selectedAppId" class="dropdown">
+            <!-- <option value="">Select an App</option> -->
+            <option *ngFor="let app of appIdOptions" [value]="app.id">
+              {{ app.id }}
+            </option>
+          </select>
+        </div>
+        <div class="informacao">
+          <span>Request URL:</span>
+          <input
+            type="text"
+            [value]="reqURL"
+            class="texto"
+            placeholder="Request URL"
+          />
+        </div>
+        <div class="informacao">
+          <span>Schema:</span>
+          <input
+            type="text"
+            [value]="schema"
+            class="texto"
+            placeholder="Schema"
+          />
+        </div>
+        <div class="informacao">
+          <span>Database:</span>
+          <input
+            type="text"
+            [value]="database"
+            class="texto"
+            placeholder="Database"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

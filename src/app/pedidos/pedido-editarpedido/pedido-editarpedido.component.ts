@@ -43,7 +43,7 @@ export class PedidoEditarpedidoComponent implements OnInit {
 
   openDialog(row: any): void {
     const dialogRef = this.dialog.open(DialogBoxComponent, {
-      width: '250px',
+      width: '300px',
       data: row,
     });
 

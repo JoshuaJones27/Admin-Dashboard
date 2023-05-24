@@ -1,0 +1,35 @@
+.informacao {
+  padding: 5px;
+  .texto {
+    margin-left: 5px;
+    min-width: 188px;
+  }
+  .dropdown {
+    margin-left: 5px;
+    min-width: 188px;
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 45vh;
+}
+
+.card {
+  margin: 10px;
+  width: 100%;
+  max-width: 400px;
+  min-width: 300px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+  text-align: left;
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}

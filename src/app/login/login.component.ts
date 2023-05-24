@@ -30,16 +30,38 @@ export class LoginComponent {
     }
   }
 
+  // onSubmit(event: Event) {
+  //   console.log('Ola do onsubmit');
+  //   event.preventDefault(); // prevent the default form submission behavior
+  //   if (this.username && this.password) {
+  //     this.authService.login(this.username, this.password).subscribe(
+  //       (response) => {
+  //         console.log(response);
+
+  //         // Redirect to the dashboard on successful login
+  //         window.location.href = '/dashboard';
+  //       },
+  //       (error) => {
+  //         console.log(error);
+  //         // Handle login error here
+  //       }
+  //     );
+  //   }
+  // }
+
   onSubmit(event: Event) {
     console.log('Ola do onsubmit');
     event.preventDefault(); // prevent the default form submission behavior
     if (this.username && this.password) {
       this.authService.login(this.username, this.password).subscribe(
-        (response) => {
-          console.log(response);
-
-          // Redirect to the dashboard on successful login
-          window.location.href = '/dashboard';
+        (authenticated) => {
+          if (authenticated) {
+            // Redirect to the dashboard on successful login
+            window.location.href = '/dashboard';
+          } else {
+            // Handle authentication error here
+            console.log('Authentication failed.');
+          }
         },
         (error) => {
           console.log(error);

@@ -68,4 +68,9 @@ export class EmpresaService {
       return throwError('Company ID is not defined');
     }
   }
+
+  getCompanyApplications(): Promise<any> {
+    const url = `${this.baseUrl}Companies/GetCompanyApplications`;
+    return axios.get(url).then((response) => response.data.model);
+  }
 }
