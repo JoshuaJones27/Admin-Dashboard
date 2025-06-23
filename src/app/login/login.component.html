@@ -1,6 +1,11 @@
+<!-- Set the page title -->
 <title>Login</title>
+
+<!-- Wrapper for the login form with animation class -->
 <div class="wrapper fadeInDown">
+  <!-- Main content of the form -->
   <div id="formContent">
+    <!-- Logo image at the top of the form -->
     <div class="fadeIn first">
       <img
         src="https://inforcavado.com/wp-content/uploads/2018/05/logo-home-menu-inforcavado-resized.png"
@@ -9,7 +14,9 @@
       />
     </div>
 
+    <!-- Login form with submit event binding -->
     <form (submit)="onSubmit($event)">
+      <!-- Username input field with two-way binding and focus/blur events -->
       <input
         type="text"
         id="login"
@@ -20,6 +27,7 @@
         (blur)="onBlur($event)"
         [(ngModel)]="username"
       />
+      <!-- Password input field with two-way binding and focus/blur events -->
       <input
         type="password"
         id="password"
@@ -30,9 +38,11 @@
         (blur)="onBlur($event)"
         [(ngModel)]="password"
       />
+      <!-- Submit button -->
       <input type="submit" class="fadeIn fourth" value="Log In" />
     </form>
 
+    <!-- Footer with a link to the dashboard -->
     <div id="formFooter">
       <a class="underlineHover" href="/dashboard">ASD ASD</a>
     </div>

@@ -1,9 +1,13 @@
+<!-- Show the login page if the current page is the login page -->
 <ng-container *ngIf="isLoginPage()">
   <app-login></app-login>
 </ng-container>
 
+<!-- Otherwise, show the main layout with sidenav and body -->
 <ng-container *ngIf="!isLoginPage()">
+  <!-- Sidenav component with toggle event -->
   <app-sidenav (onToggleSideNav)="onToggleSideNav($event)"></app-sidenav>
+  <!-- Main body component, receives collapsed state and screen width -->
   <app-body
     [collapsed]="isSideNavCollapsed"
     [screenWidth]="screenWidth"

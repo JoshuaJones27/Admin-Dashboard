@@ -1,19 +1,22 @@
+// Sidenav container styles
 .sidenav {
-  background: #263238;
-  transition: all 0.5s ease;
-  position: fixed;
-  z-index: 1;
+  background: #263238; // Dark background color
+  transition: all 0.5s ease; // Smooth transition for all properties
+  position: fixed; // Fixed position on the screen
+  z-index: 1; // Ensure it's above other elements
   top: 0;
-  width: 5rem;
-  height: 100vh;
-  box-shadow: 0.063rem 0 1.25rem 0 #8690a3;
+  width: 5rem; // Default width
+  height: 100vh; // Full viewport height
+  box-shadow: 0.063rem 0 1.25rem 0 #8690a3; // Subtle shadow
 
+  // Logo section inside sidenav
   .logo-container {
     display: flex;
     align-items: center;
     padding: 0.938rem 0.938rem 0 0.938rem;
     width: 100%;
 
+    // Logo box
     .logo {
       background: #fff;
       text-align: center;
@@ -27,6 +30,7 @@
       border: none;
     }
 
+    // Logo text next to logo
     .logo-text {
       margin-left: 1.5rem;
       font-size: 24px;
@@ -34,6 +38,7 @@
       color: #fff;
     }
 
+    // Close button for sidenav
     .btn-close {
       margin-left: auto;
       cursor: pointer;
@@ -43,6 +48,7 @@
       background-color: transparent;
       border: none;
 
+      // Icon inside close button
       .fa-times {
         color: #fff;
         font-size: 24px;
@@ -51,10 +57,12 @@
   }
 }
 
+// Expanded sidenav width
 .sidenav-collapsed {
   width: 16.5625rem;
 }
 
+// Navigation list inside sidenav
 .sidenav-nav {
   list-style: none;
   padding: 0.938rem;
@@ -64,10 +72,12 @@
   align-items: center;
   cursor: pointer;
 
+  // Each navigation item
   .sidenav-nav-item {
     width: 100%;
     margin-bottom: 0.625rem;
 
+    // Navigation link styles
     .sidenav-nav-link {
       display: flex;
       align-items: center;
@@ -77,6 +87,7 @@
       border-radius: 0.625rem;
       transition: all 0.3s ease;
 
+      // Icon in navigation link
       .sidenav-link-icon {
         font-size: 22px;
         width: 2rem;
@@ -85,15 +96,18 @@
         text-align: center;
       }
 
+      // Text in navigation link
       .sidenav-link-text {
         margin-left: 1.5rem;
       }
     }
 
+    // Hover state for navigation link
     .sidenav-nav-link:hover {
       background-color: #fff;
       color: #000;
 
+      // Change icon color on hover
       .menu-collapse-icon {
         color: #000;
       }
@@ -101,6 +115,7 @@
   }
 }
 
+// Active navigation link styles
 .active {
   background-color: #fff;
 
@@ -111,6 +126,7 @@
   }
 }
 
+// Collapse/expand icon styles
 .menu-collapse-icon {
   font-size: 25px;
   width: 2rem;
@@ -120,11 +136,13 @@
   color: #f3f3f3;
 }
 
+// Scrollable wrapper for navigation
 .scrollwrap {
   overflow-y: auto;
-  visibility: hidden;
-  height: calc(100% - 3.65rem);
+  visibility: hidden; // Hidden by default
+  height: calc(100% - 3.65rem); // Adjust height for header
 
+  // Show content on hover or focus
   .sidenav-nav,
   .scrollwrap:hover,
   .scrollwrap:focus {
@@ -132,6 +150,7 @@
   }
 }
 
+// Delayed visibility transitions for scrollwrap
 .scrollwrap_delayed {
   transition: visibility 0.5s 0.2s;
 }
@@ -140,6 +159,7 @@
   transition: visibility 0.2s 0.2s;
 }
 
+// Custom scrollbar styles for Webkit browsers
 .scrollwrap::-webkit-scrollbar {
   width: 10px;
 }
@@ -153,7 +173,7 @@ scrollwrap::-webkit-scrollbar-thumb {
   border-radius: 20px;
 }
 
-// works on firefox
+// Custom scrollbar styles for Firefox
 .scrollwrap {
   scrollbar-width: thin;
   scrollbar-color: #556268 transparent;

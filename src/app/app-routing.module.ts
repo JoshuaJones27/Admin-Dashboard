@@ -5,47 +5,48 @@ import { LoginComponent } from './login/login.component';
 import { FormularioComponent } from './formulario/formulario.component';
 import { AuthGuard } from './auth.guard';
 
+// Define application routes
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: '/login',
+    path: '', // Default path
+    redirectTo: '/login', // Redirect to login page
     pathMatch: 'full',
   },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent }, // Login route
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard], // Protected by AuthGuard
   },
   {
     path: 'empresa',
     loadChildren: () =>
-      import('./empresa/empresa.module').then((m) => m.EmpresaModule),
-    canActivate: [AuthGuard],
+      import('./empresa/empresa.module').then((m) => m.EmpresaModule), // Lazy-loaded module
+    canActivate: [AuthGuard], // Protected by AuthGuard
   },
   {
     path: 'utilizadores',
     loadChildren: () =>
       import('./utilizadores/utilizadores.module').then(
         (m) => m.UtilizadoresModule
-      ),
-    canActivate: [AuthGuard],
+      ), // Lazy-loaded module
+    canActivate: [AuthGuard], // Protected by AuthGuard
   },
   {
     path: 'pedidos',
     loadChildren: () =>
-      import('./pedidos/pedidos.module').then((m) => m.PedidosModule),
-    canActivate: [AuthGuard],
+      import('./pedidos/pedidos.module').then((m) => m.PedidosModule), // Lazy-loaded module
+    canActivate: [AuthGuard], // Protected by AuthGuard
   },
   {
     path: 'formulario',
     component: FormularioComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard], // Protected by AuthGuard
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  imports: [RouterModule.forRoot(routes)], // Import routes into the app
+  exports: [RouterModule], // Export RouterModule for use in the app
 })
 export class AppRoutingModule {}

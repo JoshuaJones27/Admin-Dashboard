@@ -1,19 +1,23 @@
 import { Component } from '@angular/core';
 import { EmpresaService } from 'src/app/services/empresa.service';
 
+// Decorator that marks this class as an Angular component
 @Component({
   selector: 'app-empresa-adicionarempresa',
   templateUrl: './empresa-adicionarempresa.component.html',
   styleUrls: ['./empresa-adicionarempresa.component.scss'],
 })
 export class EmpresaAdicionarempresaComponent {
+  // Properties bound to form fields
   name: string | undefined;
   connectionName: string | undefined;
   connectionPassword: string | undefined;
   confirmConnectionPassword: string | undefined;
 
+  // Inject the EmpresaService for API calls
   constructor(private empresaService: EmpresaService) {}
 
+  // Handler for input focus: clears the placeholder
   onFocus(event: FocusEvent) {
     const target = event.target as HTMLInputElement;
     if (target) {
@@ -21,6 +25,7 @@ export class EmpresaAdicionarempresaComponent {
     }
   }
 
+  // Handler for input blur: restores the placeholder based on input id
   onBlur(event: FocusEvent) {
     const target = event.target as HTMLInputElement;
     if (target) {
@@ -36,17 +41,20 @@ export class EmpresaAdicionarempresaComponent {
     }
   }
 
+  // Handler for form submission
   onSubmit(event: Event) {
     console.log('Ola do onsubmit');
 
-    event.preventDefault(); // prevent the default form submission behavior
+    event.preventDefault(); // Prevent default form submission
 
+    // Check if all required fields are filled
     if (
       this.name &&
       this.connectionName &&
       this.connectionPassword &&
       this.confirmConnectionPassword
     ) {
+      // Call the service to register the company
       this.empresaService
         .postRegisterCompany(
           this.name,
@@ -57,15 +65,16 @@ export class EmpresaAdicionarempresaComponent {
         .subscribe(
           (response) => {
             console.log(response);
-            // Redirect to the dashboard on successful login
+            // Redirect to dashboard on success
             window.location.href = '/dashboard';
           },
           (error) => {
+            // Log error details
             console.log(error.response.data);
             console.log(error.response.status);
             console.log(error.response.headers);
             console.log(error.config);
-            // Handle login error here
+            // Handle error here
           }
         );
     }

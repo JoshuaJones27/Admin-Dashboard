@@ -9,10 +9,6 @@ import { cloneDeep } from 'lodash'; // Import the cloneDeep function from the 'l
 export class FormularioComponent {
   formFields: any[] = [];
 
-  // addField() {
-  //   this.formFields.push({ title: '', type: 'input' });
-  // }
-
   addField() {
     const lastField = this.formFields[this.formFields.length - 1];
 

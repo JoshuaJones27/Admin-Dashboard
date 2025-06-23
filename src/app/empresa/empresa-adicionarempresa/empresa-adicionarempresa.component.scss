@@ -1,35 +1,47 @@
+// Center align items in card container
 .card {
   align-items: center;
 }
 
+// Card header: flex column, center items
 .card-head {
   display: flex;
   align-items: center;
   flex-direction: column;
 }
 
+// Padding for card body section
 .card-body-um {
   padding: 10px 10px 10px 10px;
 }
 
+// Margin for title element
 #titulo {
   margin: 10px 0px 10px 0px;
 }
 
+// Styles for form content container
 #formContent {
+  // Rounded corners
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
+  // Incorrect background value, should be a color
   background: 30px;
+  // Padding and sizing
   padding: 30px;
   width: 90%;
   max-width: 450px;
   position: relative;
+  // Overwrites previous padding
   padding: 0px;
+  // Box shadow for depth
   -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
   box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+  // Center text
   text-align: center;
 }
 
+// Button styles for input elements
 input[type="button"],
 input[type="submit"],
 input[type="reset"] {
@@ -41,17 +53,22 @@ input[type="reset"] {
   display: inline-block;
   text-transform: uppercase;
   font-size: 13px;
+  // Box shadow for button
   -webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
   box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+  // Rounded corners
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
+  // Margin around buttons
   margin: 5px 20px 40px 20px;
+  // Smooth transition for interactions
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
 
+// Input styles for text and password fields
 input[type="text"],
 input[type="password"] {
   background-color: #f6f6f6 !important;
@@ -65,11 +82,13 @@ input[type="password"] {
   margin: 5px !important;
   width: 85% !important;
   border: 2px solid #f6f6f6 !important;
+  // Smooth transition for focus/hover
   -webkit-transition: all 0.5s ease-in-out !important;
   -moz-transition: all 0.5s ease-in-out !important;
   -ms-transition: all 0.5s ease-in-out !important;
   -o-transition: all 0.5s ease-in-out !important;
   transition: all 0.5s ease-in-out !important;
+  // Rounded corners
   -webkit-border-radius: 5px 5px 5px 5px !important;
   border-radius: 5px 5px 5px 5px !important;
 }

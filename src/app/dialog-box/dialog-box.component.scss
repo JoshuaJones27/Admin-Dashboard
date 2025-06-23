@@ -1,5 +1,6 @@
+// Container class for the dialog box
 .teste {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+  width: 100%; // Make the container take full width
+  display: flex; // Use flexbox layout
+  flex-direction: column; // Arrange children in a column
 }

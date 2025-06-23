@@ -1,46 +1,14 @@
+<!-- Page Title -->
 <title>Empresa</title>
+<!-- Main Heading -->
 <h1>Empresa</h1>
+
+<!-- Search Input Field -->
 <input (keyup)="applyFilter($event)" placeholder="Pesquisar" class="input" />
 
-<!-- <table mat-table [dataSource]="empresasData" matSort>
-  <ng-container matColumnDef="select">
-    <th mat-header-cell *matHeaderCellDef>
-      <mat-checkbox
-        (change)="$event ? masterToggle() : null"
-        [checked]="selection.hasValue() && isAllSelected()"
-        [indeterminate]="selection.hasValue() && !isAllSelected()"
-      ></mat-checkbox>
-    </th>
-    <td
-      mat-cell
-      *matCellDef="let row"
-      (click)="$event.stopPropagation(); onRowSelect(row)"
-    >
-      <div *ngIf="!row.telegramID">
-        <mat-checkbox
-          [checked]="selection.isSelected(row)"
-          [disabled]="disableRowSelection(row)"
-        ></mat-checkbox>
-      </div>
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="internalID">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Internal ID</th>
-    <td mat-cell *matCellDef="let row">{{ row.internalID }}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="applicationid">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Application ID</th>
-    <td mat-cell *matCellDef="let row">{{ row.applicationid }}</td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table> -->
-
+<!-- Table displaying empresasData with sorting enabled -->
 <table mat-table [dataSource]="empresasData" matSort>
-  <!-- Checkbox Column -->
+  <!-- Checkbox Column for selecting rows -->
   <ng-container matColumnDef="select">
     <th mat-header-cell *matHeaderCellDef></th>
     <td
@@ -48,6 +16,7 @@
       *matCellDef="let row"
       (click)="$event.stopPropagation(); onRowSelect(row)"
     >
+      <!-- Show checkbox only if row does not have a telegramID -->
       <div *ngIf="!row.telegramID">
         <mat-checkbox
           [checked]="selection.isSelected(row)"
@@ -57,13 +26,13 @@
     </td>
   </ng-container>
 
-  <!-- Internal ID Column -->
+  <!-- Internal ID Column with sorting -->
   <ng-container matColumnDef="internalID">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Internal ID</th>
     <td mat-cell *matCellDef="let row">{{ row.internalID }}</td>
   </ng-container>
 
-  <!-- Application ID Column -->
+  <!-- Application ID Column with sorting -->
   <ng-container matColumnDef="applicationid">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Application ID</th>
     <td mat-cell *matCellDef="let row">{{ row.applicationid }}</td>
@@ -71,13 +40,17 @@
 
   <!-- Add the rest of your columns here -->
 
+  <!-- Table Header Row -->
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <!-- Table Data Row -->
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
 
+<!-- Paginator for table -->
 <mat-paginator
   [pageSizeOptions]="[5, 10, 20]"
   showFirstLastButtons
 ></mat-paginator>
 
+<!-- Button to generate invitation -->
 <button mat-button (click)="enviarConvite()">Gerar Convite</button>

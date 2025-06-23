@@ -1,11 +1,11 @@
+<!-- Dialog title -->
 <h2 mat-dialog-title>Editar Pedido</h2>
-<div mat-dialog-content>
-  <form [formGroup]="form">
-    <!-- <span>ID:</span>
-    <mat-form-field>
-      <input matInput placeholder="ID" formControlName="id" [disabled]="true" />
-    </mat-form-field> -->
 
+<!-- Dialog content -->
+<div mat-dialog-content>
+  <!-- Reactive form binding -->
+  <form [formGroup]="form">
+    <!-- ID field (disabled) -->
     <div class="teste">
       <span>ID:</span>
       <mat-form-field>
@@ -17,6 +17,8 @@
         />
       </mat-form-field>
     </div>
+
+    <!-- Request Name field -->
     <div class="teste">
       <span>Request Name:</span>
       <mat-form-field>
@@ -28,6 +30,7 @@
       </mat-form-field>
     </div>
 
+    <!-- Request Method select field -->
     <div class="teste">
       <span>Request Method:</span>
       <mat-form-field>
@@ -46,6 +49,8 @@
     </div>
   </form>
 </div>
+
+<!-- Dialog action buttons -->
 <div mat-dialog-actions>
   <button mat-button (click)="cancel()">Cancel</button>
   <button mat-button color="primary" (click)="submit()">Save</button>

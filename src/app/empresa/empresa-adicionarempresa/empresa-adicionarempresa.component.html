@@ -1,12 +1,21 @@
+<!-- Page title for the browser tab -->
 <title>Empresa</title>
+
+<!-- Main heading -->
 <h1>Empresa</h1>
+
+<!-- Card container for the form -->
 <div class="card">
   <div class="card-head">
+    <!-- Section title -->
     <h2 id="titulo">Adicionar Empresa</h2>
 
+    <!-- Form content wrapper -->
     <div id="formContent">
+      <!-- Form submission handled by onSubmit($event) -->
       <form (submit)="onSubmit($event)">
         <div class="card-body-um">
+          <!-- Input for company name, two-way bound to 'name' -->
           <input
             type="text"
             id="name"
@@ -18,7 +27,9 @@
           />
         </div>
         <div class="card-body-dois">
+          <!-- Credentials section -->
           <h3>Credenciais:</h3>
+          <!-- Input for connection name, two-way bound to 'connectionName' -->
           <input
             type="text"
             id="connectionName"
@@ -28,6 +39,7 @@
             (blur)="onBlur($event)"
             [(ngModel)]="connectionName"
           />
+          <!-- Input for connection password, two-way bound to 'connectionPassword' -->
           <input
             type="password"
             id="connectionPassword"
@@ -37,6 +49,7 @@
             (blur)="onBlur($event)"
             [(ngModel)]="connectionPassword"
           />
+          <!-- Input to confirm connection password, two-way bound to 'confirmConnectionPassword' -->
           <input
             type="password"
             id="confirmConnectionPassword"
@@ -46,6 +59,7 @@
             (blur)="onBlur($event)"
             [(ngModel)]="confirmConnectionPassword"
           />
+          <!-- Submit button -->
           <input type="submit" value="Criar Empresa" />
         </div>
       </form>

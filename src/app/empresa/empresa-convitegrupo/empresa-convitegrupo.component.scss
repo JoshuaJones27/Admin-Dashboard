@@ -1,25 +1,30 @@
+// Center align items in card container
 .card {
   align-items: center;
 }
 
+// Card header: flex layout, column direction, center items
 .card-head {
   display: flex;
   align-items: center;
   flex-direction: column;
 }
 
+// Card body: uniform padding
 .card-body-um {
   padding: 10px 10px 10px 10px;
 }
 
+// Title: vertical margin
 #titulo {
   margin: 10px 0px 10px 0px;
 }
 
+// Form content: rounded corners, background, shadow, padding, width, and center text
 #formContent {
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
-  background: 30px;
+  background: 30px; // NOTE: This may be incorrect, usually expects a color
   padding: 30px;
   width: 90%;
   max-width: 450px;
@@ -30,6 +35,7 @@
   text-align: center;
 }
 
+// Button-like inputs: style, color, shadow, rounded corners, margin, and transitions
 input[type="button"],
 input[type="submit"],
 input[type="reset"] {
@@ -52,6 +58,7 @@ input[type="reset"] {
   transition: all 0.3s ease-in-out;
 }
 
+// Text and password inputs: background, border, color, padding, alignment, width, rounded corners, and transitions
 input[type="text"],
 input[type="password"] {
   background-color: #f6f6f6 !important;
@@ -74,10 +81,12 @@ input[type="password"] {
   border-radius: 5px 5px 5px 5px !important;
 }
 
+// Material table header cell: bold text
 .mat-header-cell {
   font-weight: bold;
 }
 
+// Material table cell: center text
 .mat-cell {
   text-align: center;
 }

@@ -1,16 +1,22 @@
+<!-- Main container with dynamic class based on getBodyClass() -->
 <div class="body" [ngClass]="getBodyClass()">
+  <!-- Top toolbar -->
   <mat-toolbar>
+    <!-- Spacer div to push navigation buttons to the right -->
     <div class="spacer"></div>
-    <!-- Add a spacer to push the buttons to the right -->
+    <!-- Navigation buttons container -->
     <div class="nav-buttons">
+      <!-- Company menu button -->
       <button mat-button [matMenuTriggerFor]="menuEmpresa" aria-label="Menu 1">
         {{ companyName }}
       </button>
 
+      <!-- Language selection menu button -->
       <button mat-button [matMenuTriggerFor]="menuIdioma" aria-label="Menu 2">
         {{ translate("button.idioma") }}
       </button>
 
+      <!-- User menu button -->
       <button
         mat-button
         [matMenuTriggerFor]="menuUtilizador"
@@ -21,22 +27,27 @@
     </div>
   </mat-toolbar>
 
-  <!-- Ver isto -->
+  <!-- Company menu (currently empty) -->
   <mat-menu #menuEmpresa="matMenu">
-    <!-- <button mat-menu-item>Option 1</button>
+    <!--
+    <button mat-menu-item>Option 1</button>
     <button mat-menu-item>Option 2</button>
-    <button mat-menu-item>Option 3</button> -->
+    <button mat-menu-item>Option 3</button>
+    -->
   </mat-menu>
 
+  <!-- Language selection menu -->
   <mat-menu #menuIdioma="matMenu">
     <button mat-menu-item (click)="changeLanguage('pt')">Português</button>
     <button mat-menu-item (click)="changeLanguage('en')">Inglês</button>
   </mat-menu>
 
+  <!-- User menu -->
   <mat-menu #menuUtilizador="matMenu">
     <button mat-menu-item>Mudar Palavra Passe</button>
     <button mat-menu-item>Logout</button>
   </mat-menu>
 
+  <!-- Angular router outlet for displaying routed components -->
   <router-outlet></router-outlet>
 </div>
